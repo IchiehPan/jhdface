@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">佳鸿达考勤Meta</string>
+    
+    <!-- loadable View -->
+    <string name="loadable_view_click_to_refresh">点击屏幕,重新加载</string>
+    <string name="loadable_view_no_data">暂无内容</string>
+    <string name="loadable_view_loading">正在识别中，请稍候……</string>
+    <string name="loadable_view_load_error_click_to_refresh">识别失败……</string>
+    <string name="loadable_view_network_error_click_to_refresh">没有可用的网络</string>
+    <string name="loadable_view_network_error">没有可用的网络~</string>
+    <string name="error_request_data">请求失败，请重试</string>
+    <string name="recognition_fail">抱歉，识别失败</string>
+    
+	<string name="default_face_tip">Hi,请将脸对准摄像头</string>
+	<string name="request_permission_tip">Hi,请将脸对准摄像头</string>
+
+    <string name="text_id">编号：</string>
+    <string name="text_name">姓名：</string>
+    <string name="error_name_empty">姓名不能为空</string>
+    <string name="text_gender">性别：</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="secret">保密</string>
+    <string name="text_unit">单位：</string>
+    <string name="text_company">公司：</string>
+    <string name="error_unit_empty">单位不能为空</string>
+    <string name="text_department">部门：</string>
+    <string name="error_department_empty">部门不能为空</string>
+    <string name="text_position">职位：</string>
+    <string name="error_position_empty">职位不能为空</string>
+    <string name="submit">提交</string>
+    
+    <string name="input_username">请输入用户名</string>
+    <string name="input_password">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="logout">退出登录</string>
+    <string name="logout_msg">亲！您已退出登录</string>
+    <string name="error_username_empty">请输入用户名</string>
+    <string name="error_password_empty">请输入密码</string>
+    <string name="error_login">登录失败</string>
+    <string name="success_login">登录成功</string>
+
+    <string name="down_state">正在下载：%s</string>
+    <string name="success_upload">上传成功</string>
+    <string name="msc_app_id">5c32b4d8</string>
+</resources>

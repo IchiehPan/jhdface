@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<drawable name="transparent">#00000000</drawable>
+    <drawable name="translucent">#33000000</drawable>
+    
+    <drawable name="profile_item_bg_normal">#ffffffff</drawable>
+    <drawable name="profile_item_bg_selected">#ffcccccc</drawable>
+    
+    <color name="colorPrimaryDark">#008d9e</color>
+    
+    <color name="transparent">#00000000</color>
+    <color name="translucent">#33000000</color>
+	<color name="white">#ffffff</color>
+    <color name="primaryDark">#f57257</color>
+    <color name="color_D9D9D9">#ffd9d9d9</color>
+    <color name="color_999999">#ff999999</color>
+    <color name="color_EEEEEE">#eeeeee</color>
+    <color name="green">#5eb95e</color>
+</resources>

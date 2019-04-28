@@ -68,7 +68,7 @@ public class CvCameraViewListener2 implements CameraBridgeViewBase.CvCameraViewL
             Core.rotate(mGray, mGray, Core.ROTATE_90_COUNTERCLOCKWISE);
         }
 
-
+        //上下翻转代码
         Core.flip(mRgba, mRgba, 0);
         Core.flip(mGray, mGray, 0);
 

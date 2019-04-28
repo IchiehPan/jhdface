@@ -1,8 +1,9 @@
 package cn.jhd.face.client.listener;
 
-import android.content.res.Configuration;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Surface;
 
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.core.Core;
@@ -30,14 +31,15 @@ public class CvCameraViewListener2 implements CameraBridgeViewBase.CvCameraViewL
     private JniClient jniClient = new JniClient();
 
     private Handler mHandle;
-    private int mOrientation;
+    private int mRotation;
 
     //创建观察者对象
     FrameObserver frameObserver;
 
-    public CvCameraViewListener2(Handler handler, int orientation) {
+    public CvCameraViewListener2(Handler handler, int rotation) {
         mHandle = handler;
-        mOrientation = orientation;
+        mRotation = rotation;
+        Log.w(TAG, "CvCameraViewListener2: mRotation=" + mRotation);
     }
 
 
@@ -63,14 +65,31 @@ public class CvCameraViewListener2 implements CameraBridgeViewBase.CvCameraViewL
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
 
-        if (mOrientation == Configuration.ORIENTATION_PORTRAIT) {
-            Core.rotate(mRgba, mRgba, Core.ROTATE_90_COUNTERCLOCKWISE);
-            Core.rotate(mGray, mGray, Core.ROTATE_90_COUNTERCLOCKWISE);
+        switch (mRotation) {
+            case Surface.ROTATION_0:
+                Core.rotate(mRgba, mRgba, Core.ROTATE_90_COUNTERCLOCKWISE);
+                Core.rotate(mGray, mGray, Core.ROTATE_90_COUNTERCLOCKWISE);
+                Core.flip(mRgba, mRgba, 1);
+                Core.flip(mGray, mGray, 1);
+                break;
+            case Surface.ROTATION_90:
+                Core.flip(mRgba, mRgba, 1);
+                Core.flip(mGray, mGray, 1);
+                break;
+            case Surface.ROTATION_180:
+                Core.rotate(mRgba, mRgba, Core.ROTATE_90_COUNTERCLOCKWISE);
+                Core.rotate(mGray, mGray, Core.ROTATE_90_COUNTERCLOCKWISE);
+                //上下翻转代码
+                Core.flip(mRgba, mRgba, 0);
+                Core.flip(mGray, mGray, 0);
+                break;
+            case Surface.ROTATION_270:
+                Core.rotate(mRgba, mRgba, Core.ROTATE_180);
+                Core.rotate(mGray, mGray, Core.ROTATE_180);
+                Core.flip(mRgba, mRgba, 1);
+                Core.flip(mGray, mGray, 1);
+                break;
         }
-
-        //上下翻转代码
-        Core.flip(mRgba, mRgba, 0);
-        Core.flip(mGray, mGray, 0);
 
         int scale = 4;
         Rect[] facesArray = null;

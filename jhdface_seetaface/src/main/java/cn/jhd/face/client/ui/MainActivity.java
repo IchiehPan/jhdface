@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements EasyPermissions.Permission
 //        cameraBridgeViewBase.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
 //        cameraBridgeViewBase.setVisibility(CameraBridgeViewBase.VISIBLE);
 
-        CvCameraViewListener2 cvCameraViewListener2 = new CvCameraViewListener2(mHandle, getResources().getConfiguration().orientation);
+        CvCameraViewListener2 cvCameraViewListener2 = new CvCameraViewListener2(mHandle, getWindowManager().getDefaultDisplay().getRotation());
         cameraBridgeViewBase.setCvCameraViewListener(cvCameraViewListener2);
 
         //设置相机帧的最大大小

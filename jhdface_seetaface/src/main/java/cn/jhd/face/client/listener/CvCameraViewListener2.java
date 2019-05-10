@@ -77,9 +77,10 @@ public class CvCameraViewListener2 implements CameraBridgeViewBase.CvCameraViewL
                 Core.flip(mGray, mGray, 1);
                 break;
             case Surface.ROTATION_180:
+                // 旋转
                 Core.rotate(mRgba, mRgba, Core.ROTATE_90_COUNTERCLOCKWISE);
                 Core.rotate(mGray, mGray, Core.ROTATE_90_COUNTERCLOCKWISE);
-                //上下翻转代码
+                //左右翻转代码
                 Core.flip(mRgba, mRgba, 0);
                 Core.flip(mGray, mGray, 0);
                 break;
@@ -116,12 +117,21 @@ public class CvCameraViewListener2 implements CameraBridgeViewBase.CvCameraViewL
             }
         }
 
-        Imgproc.cvtColor(mRgba, mRgba, Imgproc.COLOR_BGR2RGB, 3);
-
         if (facesArray != null && facesArray.length != 0) {
             faceInfoMap.put("facesArray", facesArray);
-            faceInfoMap.put("mRgba", mRgba);
+
+            Mat imageMat = mRgba.clone();
+//            Log.i(TAG, "onCameraFrame: beforeCVT --- channels()=" + imageMat.channels());
+            // out print "4"
+            if (imageMat.channels() != 3) { // 彩色图为3
+                //每个设备不一样，有些可能要先转成rgb
+                Imgproc.cvtColor(mRgba, imageMat, Imgproc.COLOR_BGR2RGB, 3);
+            }
+//            Log.i(TAG, "onCameraFrame: afterCVT --- channels()=" + imageMat.channels());
+            // out print "3"
+            faceInfoMap.put("mRgba", imageMat);
             frameObserver.onChanged(faceInfoMap);
+//            Imgproc.cvtColor(mRgba, mRgba, Imgproc.COLOR_RGB2BGR, 3);
         }
 
         // 绘制区域
@@ -132,9 +142,10 @@ public class CvCameraViewListener2 implements CameraBridgeViewBase.CvCameraViewL
             }
         }
 
-
-        //每个设备不一样，有些可能要先转成rgb
-        Imgproc.cvtColor(mRgba, mRgba, Imgproc.COLOR_RGB2BGR, 3);
+        if (mRgba.channels() != 3) {
+            //每个设备不一样，有些可能要先转成rgb
+            Imgproc.cvtColor(mRgba, mRgba, Imgproc.COLOR_BGR2RGB, 3);
+        }
 
         return mRgba;
     }

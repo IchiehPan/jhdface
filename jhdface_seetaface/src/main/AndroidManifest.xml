@@ -44,6 +44,13 @@
         </activity>
 
         <service android:name=".service.DownloadService" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5cd4f12c4ca3576ad6001030" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="seeta" />
     </application>
 
     <supports-screens
@@ -97,5 +104,6 @@
     <uses-feature
         android:name="android.hardware.camera.front.autofocus"
         android:required="false" />
+
 
 </manifest>

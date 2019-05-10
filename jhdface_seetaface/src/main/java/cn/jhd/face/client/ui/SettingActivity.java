@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,5 +101,17 @@ public class SettingActivity extends Activity {
             AccessTokenManager.logout();
         }
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this); //统计时长
     }
 }

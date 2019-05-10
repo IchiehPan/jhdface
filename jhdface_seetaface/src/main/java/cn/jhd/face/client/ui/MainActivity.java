@@ -11,6 +11,7 @@ import org.xutils.x;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.util.Util;
+import com.umeng.analytics.MobclickAgent;
 
 import android.Manifest;
 import android.app.Activity;
@@ -177,8 +178,10 @@ public class MainActivity extends Activity implements EasyPermissions.Permission
     @Override
     public void onPause() {
         super.onPause();
-        if (cameraBridgeViewBase != null)
+        if (cameraBridgeViewBase != null) {
             cameraBridgeViewBase.disableView();
+        }
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -189,6 +192,7 @@ public class MainActivity extends Activity implements EasyPermissions.Permission
         } else {
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
+        MobclickAgent.onResume(this); //统计时长
     }
 
     @Override

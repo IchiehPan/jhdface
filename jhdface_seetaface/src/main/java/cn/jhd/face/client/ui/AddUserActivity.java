@@ -39,6 +39,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
+
 import cn.jhd.face.client.R;
 import cn.jhd.face.client.bean.ResponseBean;
 import cn.jhd.face.client.bean.UserBean;
@@ -246,17 +248,24 @@ public class AddUserActivity extends Activity implements BaseFindFaceView.Delega
 
     @Override
     public void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
         mFindFaceView.startCamera(Camera.CameraInfo.CAMERA_FACING_FRONT);
         mFindFaceView.showScanRect();
         mFindFaceView.startSpot();
+
+        MobclickAgent.onResume(this); //统计时长
     }
 
     @Override
     public void onStop() {
         mFindFaceView.stopCamera();
         super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

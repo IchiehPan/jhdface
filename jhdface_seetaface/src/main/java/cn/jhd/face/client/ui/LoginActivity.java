@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
+
 import cn.jhd.face.client.AccessTokenManager;
 import cn.jhd.face.client.R;
 import cn.jhd.face.client.bean.LoginBean;
@@ -163,5 +165,17 @@ public class LoginActivity extends Activity {
                 mInfoView.setVisibility(View.VISIBLE);
         }
         mHandler.sendEmptyMessageDelayed(type, 3 * 1000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this); //统计时长
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }
